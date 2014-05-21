@@ -1,7 +1,7 @@
 //
-// 	UIImage+PRAutoAdjust.m
+//  UIImage+PRAutoAdjust.m
 //
-// 	Created by Pierre Rothmaler on 13.12.13.
+//  Created by Pierre Rothmaler on 13.12.13.
 //	This is free and unencumbered software released into the public domain.
 //
 //	Anyone is free to copy, modify, publish, use, compile, sell, or
@@ -36,6 +36,7 @@
 	CIImage * ciImage = [CIImage imageWithCGImage:[self imageWithOrientationUp].CGImage];
 
 	NSArray * autoFilters = [ciImage autoAdjustmentFilters];
+
 	for (CIFilter *ciFilter in autoFilters) {
 		[ciFilter setValue:ciImage forKey:kCIInputImageKey];
 		ciImage = [ciFilter valueForKey:kCIOutputImageKey];
@@ -107,18 +108,24 @@
 											 CGImageGetColorSpace(self.CGImage),
 											 CGImageGetBitmapInfo(self.CGImage));
 	CGContextConcatCTM(ctx, transform);
+
 	switch (self.imageOrientation) {
 		case UIImageOrientationLeft:
 		case UIImageOrientationLeftMirrored:
 		case UIImageOrientationRight:
-		case UIImageOrientationRightMirrored:
-			// Grr...
+		case UIImageOrientationRightMirrored: {
 			CGContextDrawImage(ctx, CGRectMake(0,0,self.size.height,self.size.width), self.CGImage);
 			break;
+		}
 
-		default:
+		case UIImageOrientationUp:
+		case UIImageOrientationDown:
+		case UIImageOrientationDownMirrored:
+		case UIImageOrientationUpMirrored: {
+//		default:
 			CGContextDrawImage(ctx, CGRectMake(0,0,self.size.width,self.size.height), self.CGImage);
 			break;
+		}
 	}
 
 	// And now we just create a new UIImage from the drawing context

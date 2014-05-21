@@ -1,7 +1,7 @@
 //
-// 	UIImage+PRAutoAdjust.h
+//  UIImage+PRAutoAdjust.h
 //
-// 	Created by Pierre Rothmaler on 13.12.13.
+//  Created by Pierre Rothmaler on 13.12.13.
 //	This is free and unencumbered software released into the public domain.
 //
 //	Anyone is free to copy, modify, publish, use, compile, sell, or
@@ -28,7 +28,7 @@
 //	For more information, please refer to <http://unlicense.org/>
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UIImage (PRAutoAdjust)
 
