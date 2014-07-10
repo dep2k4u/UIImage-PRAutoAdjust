@@ -42,9 +42,10 @@
 		ciImage = [ciFilter valueForKey:kCIOutputImageKey];
 	}
 
-	CIContext * context = [CIContext contextWithOptions:nil];
-	CGImageRef cgImage = [context createCGImage:ciImage fromRect:ciImage.extent];
-	UIImage * uiImage = [UIImage imageWithCGImage:cgImage];
+	CIContext *context  = [CIContext contextWithOptions:nil];
+	CGImageRef cgImage  = [context createCGImage:ciImage fromRect:ciImage.extent];
+	UIImage *uiImage    = [UIImage imageWithCGImage:cgImage];
+
 	CGImageRelease(cgImage);
 
 	return uiImage;
