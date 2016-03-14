@@ -35,7 +35,7 @@
 -(UIImage*)autoAdjustImage {
 	CIImage * ciImage = [CIImage imageWithCGImage:[self imageWithOrientationUp].CGImage];
 
-	NSArray * autoFilters = [ciImage autoAdjustmentFilters];
+	NSArray * autoFilters =  [ciImage autoAdjustmentFiltersWithOptions:nil];
 
 	for (CIFilter *ciFilter in autoFilters) {
 		[ciFilter setValue:ciImage forKey:kCIInputImageKey];
